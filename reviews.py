@@ -22,3 +22,55 @@ for d in data:
 print('一共有', len(new), '筆留言長度小於100')
 print(new[0])
 print(new[1])
+
+# good = []
+# for d in data:
+#	if 'good' in d: # 檢查 good 字串是否有在 d 字串裡面
+#		good.append(d)
+# print('一共有', len(good), '筆留言提到good')
+# print(good[0])
+
+# 清單快寫法list comprehension，等於line 26 - 29
+# good = [d for d in data if 'good' in d]
+# print(good) # 確認結果
+
+good = [1 for d in data if 'good' in d]
+print(good)
+
+bad = ['bad' in d for d in data]
+print(bad)
+
+# line 40-41 的原本寫法
+# bad = []
+# for d in data:
+# 	bad.append('bad' in d)
+
+#文字計數功能
+
+wc = {} # word_count
+word_count = 0
+for d in data:
+	words = d.split() # 拿掉' '之後，split會預設為空白做切割
+	for word in words:
+		if word in wc:
+			# 自己練習 word_count += 1
+			wc[word] += 1
+		else:
+			# 自己練習 wc[word] = word_count
+			wc[word] = 1 # 新增key進wc字典，value = 1
+
+for word in wc: # for loop來印字典
+	if wc[word] > 1000000:
+		print(word, wc[word])
+
+print(len(wc))  # 印出字典的長度
+
+while True:
+	word = input('請問你想查甚麼字: ')
+	if word == 'q':
+		break
+	if word in wc:
+		print(word, '出現過的次數為: ', wc[word])
+	else:
+		print('這個字沒有出現過喔')
+print('感謝使用本功能')
